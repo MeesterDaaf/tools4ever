@@ -36,25 +36,25 @@ if (isset($_GET['role'])) { //bestaat role in get request?
         </thead>
         <tbody>
 
-            <?php foreach ($database_gegevens as $key => $users_row) : ?>
+            <?php foreach ($database_gegevens as $key => $user_row) : ?>
                 <tr>
                     <td>
-                        <?php echo $users_row['id']; ?>
+                        <?php echo $user_row['id']; ?>
                     </td>
                     <td>
-                        <?php echo $users_row['username']; ?>
+                        <?php echo $user_row['username']; ?>
                     </td>
                     <td>
-                        <?php echo $users_row['email']; ?>
+                        <?php echo $user_row['email']; ?>
                     </td>
                     <td>
                         <?php
                         $roles = ['', 'Admin', 'Manager', 'Medewerker'];
-                        echo $roles[$users_row['role']]; ?>
+                        echo $roles[$user_row['role']]; ?>
                     </td>
                     <td>
-                        <a class="btn btn-warning" href="users_update.php?user_id=<?php echo $users_row['id']; ?>">Edit</a>
-                        <a class="btn btn-danger" href="users_delete.php?user_id=<?php echo $users_row['id']; ?>">Delete</a>
+                        <a class="btn btn-warning" href="users_update.php?user_id=<?php echo $user_row['id']; ?>">Edit</a>
+                        <a class="btn btn-danger" href="users_delete.php?user_id=<?php echo $user_row['id']; ?>">Delete</a>
                     </td>
                 </tr>
             <?php endforeach ?>
