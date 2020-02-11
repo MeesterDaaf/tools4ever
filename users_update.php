@@ -1,6 +1,10 @@
-<?php
+<?php include 'header.php'; //hier staat de sessie_start() functie in
 
 require 'database.php';
+if (!isset($_SESSION['user_id'])) {
+    header('location: login.php');
+}
+
 
 $id = $_GET['user_id'];
 
@@ -32,14 +36,13 @@ $statement->execute();
 $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
-<?php include 'header.php'; ?>
 <div class="container">
     <div class="row">
         <div class="col">
             <form method="post">
                 <div class="form-group">
                     <label for="usernameInput">Username</label>
-                    <input type="text" class="form-control" id="usernameInput" name="username" value="<?php echo $database_gegevens['username']; ?>">
+                    <input type="text" class="form-control" id="usernameInput" name="username" value="<?php echo $database_gegevens['username']; ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="emailInput">Email</label>

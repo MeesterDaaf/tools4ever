@@ -1,6 +1,9 @@
-<?php
+<?php include 'header.php'; //hier staat de sessie_start() functie in
 
 require 'database.php';
+if (!isset($_SESSION['user_id'])) {
+    header('location: login.php');
+}
 
 //check button press en of de velden gevuld zijn
 if (isset($_POST['submit'])  && $_POST['username'] != '' && $_POST['email'] != '') {
@@ -21,7 +24,7 @@ if (isset($_POST['submit'])  && $_POST['username'] != '' && $_POST['email'] != '
 }
 ?>
 
-<?php include 'header.php'; ?>
+
 <div class="container">
     <div class="row">
         <div class="col">

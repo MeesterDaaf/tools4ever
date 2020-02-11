@@ -1,16 +1,25 @@
-<?php
+<?php include 'header.php'; //hier staat de sessie_start() functie in
+
 
 require 'database.php';
+if (!isset($_SESSION['user_id'])) {
+    header('location: login.php');
+}
 
 //selecteer ALLE Producten
-$sql = "SELECT * FROM products";
+$sql = "SELECT *, products.name as product_name, factories.name as factory_name  FROM products 
+                JOIN factories ON factories.id = products.factory_id";
+
 $statement = $db_conn->prepare($sql);
 $statement->execute();
 $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+// print_r($database_gegevens);
+
+
 ?>
 
-<?php include 'header.php'; ?>
+
 <div class="container">
     <h3 class="display-4">Product Prijzen</h3>
     <table class="table mb-3 mt-3">
@@ -32,10 +41,10 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
                         <?php echo $product_row['id']; ?>
                     </td>
                     <td>
-                        <?php echo $product_row['name']; ?>
+                        <?php echo $product_row['product_name']; ?>
                     </td>
                     <td>
-                        <?php echo $product_row['factory_id']; ?>
+                        <?php echo $product_row['factory_name']; ?>
                     </td>
                     <td>
                         <?php echo $product_row['purchase_price']; ?>

@@ -1,6 +1,10 @@
-<?php
+<?php include 'header.php'; //hier staat de sessie_start() functie in
 
 require 'database.php';
+if (!isset($_SESSION['user_id'])) {
+    header('location: login.php');
+}
+
 
 //selecteer ALLE gebruikers
 $sql = "SELECT * FROM users";
@@ -22,7 +26,6 @@ if (isset($_GET['role'])) { //bestaat role in get request?
 }
 ?>
 
-<?php include 'header.php'; ?>
 <div class="container">
     <table class="table">
         <thead>

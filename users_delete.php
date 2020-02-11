@@ -1,5 +1,10 @@
-<?php
+<?php include 'header.php'; //hier staat de sessie_start() functie in
+
 require 'database.php';
+if (!isset($_SESSION['user_id'])) {
+    header('location: login.php');
+}
+
 
 $id  = $_GET['user_id'];
 
